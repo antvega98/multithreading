@@ -5,6 +5,13 @@
 
 using namespace std;
 
+/*
+    3 Pieces Required of Condition Variables:
+        - Mutex: protects shared data.
+        - Condition Variable: used to sleep and wake threads.
+        - Shared condition: Thing we wait for.
+*/
+
 mutex mtx;
 condition_variable cv;
 bool ready = false;
@@ -27,8 +34,7 @@ int main() {
     }
 
     cv.notify_one();
-
-    t.join();
+    t.join(); // t.join() is at the end. Tells main to wait for t to finish.
     return 0;
 }
 
